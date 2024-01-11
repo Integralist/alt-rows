@@ -5,7 +5,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fatih/color"
+	"github.com/mgutz/ansi"
+)
+
+var (
+	g = ansi.ColorFunc("green+bh")
+	r = ansi.ColorFunc("red+bh")
 )
 
 func main() {
@@ -14,11 +19,11 @@ func main() {
 	var alt bool
 	for scanner.Scan() {
 		if alt {
-			color.Red(scanner.Text())
+			fmt.Println(r(scanner.Text()))
 			alt = false
 			continue
 		}
-		color.Green(scanner.Text())
+		fmt.Println(g(scanner.Text()))
 		alt = true
 	}
 
